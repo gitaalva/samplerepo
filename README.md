@@ -91,6 +91,17 @@ The following command line arguments can be used to run it:
 
 For an example of how to use Affdex in a C# application .. please refer to [AffdexMe](https://github.com/affectiva/affdexme-win)
 
+
+Running ipynb files:
+
+Dependency:
+
+python 2.7
+anaconda
+scikit-learn
+jupyter notebook
+ggplot
+
 Reference Link:
 
 https://github.com/Affectiva/cpp-sdk-samples
