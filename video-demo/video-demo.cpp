@@ -40,7 +40,13 @@ int main(int argsc, char ** argsv)
     bool loop = false;
     unsigned int nFaces = 1;
     int faceDetectorMode = (int)FaceDetectorMode::LARGE_FACES;
-
+    
+    //@aalva begin
+    int totalNumberOfFrames = 0;
+    // variable to count the number of detections
+    int countNumberOfDetections = 0;
+    //@aalva end
+    
     const int precision = 2;
     std::cerr.precision(precision);
     std::cout.precision(precision);
@@ -101,6 +107,8 @@ int main(int argsc, char ** argsv)
 	else
 	{
 		process_framerate = cap.get(CV_CAP_PROP_FPS);
+		totalNumberOfFrames = cap.get(CV_CAP_PROP_FRAME_COUNT);
+		std::cout << "The total number of frames in the video is " << totalNumberOfFrames << std::endl; 
 		std::cout << "The acutal frame rate is " << process_framerate << std::endl;
 	}
         //Initialize out file
@@ -155,7 +163,7 @@ int main(int argsc, char ** argsv)
 
 
         detector->start();    //Initialize the detectors .. call only once
-
+	
         do
         {
             shared_ptr<StatusListener> videoListenPtr = std::make_shared<StatusListener>();
@@ -167,8 +175,8 @@ int main(int argsc, char ** argsv)
             }
             else
             {
-				//videoPath is of type std::wstring on windows, but std::string on other platforms.
-				cv::Mat img = cv::imread(std::string(videoPath.begin(), videoPath.end()));
+		//videoPath is of type std::wstring on windows, but std::string on other platforms.
+		cv::Mat img = cv::imread(std::string(videoPath.begin(), videoPath.end()));
 
                 // Create a frame
                 Frame frame(img.size().width, img.size().height, img.data, Frame::COLOR_FORMAT::BGR);
@@ -180,7 +188,8 @@ int main(int argsc, char ** argsv)
             {
                 if (listenPtr->getDataSize() > 0)
                 {
-                    std::pair<Frame, std::map<FaceId, Face> > dataPoint = listenPtr->getData();
+		    countNumberOfDetections++;
+		    std::pair<Frame, std::map<FaceId, Face> > dataPoint = listenPtr->getData();
                     Frame frame = dataPoint.first;
                     std::map<FaceId, Face> faces = dataPoint.second;
 
@@ -209,6 +218,7 @@ int main(int argsc, char ** argsv)
     {
         std::cerr << ex.what();
     }
-
+    std::cout << "The total number of frames where face was detected is " << countNumberOfDetections << std::endl;
+    std::cout << "The acutal total number of frames in the video is " << totalNumberOfFrames << std::endl;
     return 0;
 }
