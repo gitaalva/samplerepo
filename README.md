@@ -1,10 +1,10 @@
-#Sample Apps for Affdex SDK for Windows and Linux
+#Affectiva based student learning analysis
+This repo consists of files for Affectiva based student learning analysis.
+To install affectiva and to run the code samples. Follow the following directions.
+This repo makes use of the Affectiva SDK and it's video samples and the running instruction is similar.
+Please follow the following instructions which have been modified from the affectiva instructions in order
+to build this repo.
 
-Welcome to our repository on GitHub! Here you will find example code to get you started with our Affdex SDK 3.1 and begin emotion-enabling you own app! Documentation for the SDKs is available on the <a href=http://developer.affectiva.com/>Affectiva's Developer Portal</a>.
-
-*Build Status*
-- Windows: [![Build status](https://ci.appveyor.com/api/projects/status/pn2y9h8a3nnkiw41?svg=true)]
-(https://ci.appveyor.com/project/ahamino/win-sdk-samples)
 - Ubuntu: [![Build Status](https://travis-ci.org/Affectiva/cpp-sdk-samples.svg?branch=master)](https://travis-ci.org/Affectiva/cpp-sdk-samples)
 
 Dependencies
@@ -42,10 +42,10 @@ wget https://download.affectiva.com/linux/affdex-cpp-sdk-3.1-396-linux-64bit.tar
 mkdir $HOME/affdex-sdk
 tar -xzvf affdex-cpp-sdk-3.1-396-linux-64bit.tar.gz -C $HOME/affdex-sdk
 export AFFDEX_DATA_DIR=$HOME/affdex-sdk/data
-git clone https://github.com/Affectiva/cpp-sdk-samples.git $HOME/sdk-samples
+git clone https://github.com/gitaalva/samplerepo.git $HOME/
 mkdir $HOME/build
 cd $HOME/build
-cmake -DOpenCV_DIR=/usr/ -DBOOST_ROOT=/usr/ -DAFFDEX_DIR=$HOME/affdex-sdk $HOME/sdk-samples
+cmake -DOpenCV_DIR=/usr/ -DBOOST_ROOT=/usr/ -DAFFDEX_DIR=$HOME/affdex-sdk $HOME/samplerepo
 make
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/affdex-sdk/lib
 ```
@@ -90,3 +90,9 @@ The following command line arguments can be used to run it:
 
 
 For an example of how to use Affdex in a C# application .. please refer to [AffdexMe](https://github.com/affectiva/affdexme-win)
+
+Reference Link:
+
+https://github.com/Affectiva/cpp-sdk-samples
+
+
